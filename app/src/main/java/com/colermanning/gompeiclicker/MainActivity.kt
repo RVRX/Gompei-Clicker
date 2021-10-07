@@ -1,6 +1,7 @@
 package com.colermanning.gompeiclicker
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -10,14 +11,31 @@ import android.view.Menu
 import android.view.MenuItem
 import com.colermanning.gompeiclicker.ui.main.SectionsPagerAdapter
 import com.colermanning.gompeiclicker.databinding.ActivityMainBinding
+import com.colermanning.gompeiclicker.ui.main.GameStartFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks {
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.fragment_main)
+        val currentFragment =
+            supportFragmentManager.findFragmentById(R.id.constraintLayout)
+
+        if (currentFragment == null) {
+            //val fragment = GameListFragment.newInstance(0)
+            //val fragment = GameFragment.newInstance(UUID.fromString("7da90068-6943-4ff7-8082-2abeb9e42462"))
+            val fragment = GameStartFragment.newInstance()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.constraintLayout, fragment)
+                .commit()
+        }
+    }
+
+    override fun onStartGameSelected(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
