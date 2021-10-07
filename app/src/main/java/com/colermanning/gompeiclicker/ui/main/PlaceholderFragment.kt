@@ -1,6 +1,7 @@
 package com.colermanning.gompeiclicker.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class PlaceholderFragment : Fragment() {
 
         val textView: TextView = binding.sectionLabel
         pageViewModel.text.observe(viewLifecycleOwner, Observer {
+            Log.d("fortnite", it)
             textView.text = it
         })
         return root
