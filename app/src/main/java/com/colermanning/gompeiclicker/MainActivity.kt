@@ -12,8 +12,9 @@ import android.view.MenuItem
 import com.colermanning.gompeiclicker.ui.main.SectionsPagerAdapter
 import com.colermanning.gompeiclicker.databinding.ActivityMainBinding
 import com.colermanning.gompeiclicker.ui.main.GameStartFragment
+import com.colermanning.gompeiclicker.ui.main.SettingsFragment
 
-class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks {
+class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsFragment.Callbacks {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.fragment_main)
+
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.constraintLayout)
 
@@ -47,8 +49,33 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks {
         val fab: FloatingActionButton = binding.fab
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            setContentView(R.layout.fragment_main)
+                val fragment = SettingsFragment.newInstance()
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.constraintLayout, fragment)
+                    .commit()
+            }
+        }
+
+    override fun onSaveSettingsSelected(){
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = binding.viewPager
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = binding.tabs
+        tabs.setupWithViewPager(viewPager)
+        val fab: FloatingActionButton = binding.fab
+
+        fab.setOnClickListener { view ->
+            setContentView(R.layout.fragment_main)
+            val fragment = SettingsFragment.newInstance()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.constraintLayout, fragment)
+                .commit()
         }
     }
 }
