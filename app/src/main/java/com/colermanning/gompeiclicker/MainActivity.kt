@@ -9,10 +9,8 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.colermanning.gompeiclicker.ui.main.SectionsPagerAdapter
 import com.colermanning.gompeiclicker.databinding.ActivityMainBinding
-import com.colermanning.gompeiclicker.ui.main.GameStartFragment
-import com.colermanning.gompeiclicker.ui.main.SettingsFragment
+import com.colermanning.gompeiclicker.ui.main.*
 
 class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsFragment.Callbacks {
 
@@ -42,6 +40,8 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         setContentView(binding.root)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        sectionsPagerAdapter.addFragment(gameFragment.newInstance(), "Game")
+        sectionsPagerAdapter.addFragment(shopFragment.newInstance(), "Shop")
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         setContentView(binding.root)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        sectionsPagerAdapter.addFragment(gameFragment(), "Game")
+        sectionsPagerAdapter.addFragment(shopFragment(),"Shop")
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs

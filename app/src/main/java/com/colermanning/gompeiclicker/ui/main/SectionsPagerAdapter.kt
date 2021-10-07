@@ -18,18 +18,26 @@ private val TAB_TITLES = arrayOf(
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
+    private val fragmentList = ArrayList<Fragment>()
+    private val fragmentnameList = ArrayList<String>()
+
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1)
+        return fragmentList[position]
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
+        return fragmentnameList[position]
     }
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return fragmentList.size
+    }
+
+    fun addFragment(fragment: Fragment, string: String) {
+        fragmentList.add(fragment)
+        fragmentnameList.add(string)
     }
 }
