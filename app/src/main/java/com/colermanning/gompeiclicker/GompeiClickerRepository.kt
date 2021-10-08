@@ -36,6 +36,12 @@ class GompeiClickerRepository private constructor(context: Context) {
         }
     }
 
+    fun setPoints(points: Int) {
+        executor.execute {
+            gompeiClickerDao.updatePoints(points)
+        }
+    }
+
     fun populateDefaults() {
         executor.execute {
             //empty current DB stuff

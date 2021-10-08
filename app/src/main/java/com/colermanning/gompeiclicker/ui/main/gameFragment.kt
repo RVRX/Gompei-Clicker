@@ -101,8 +101,7 @@ class gameFragment : Fragment() {
         var pointsToAdd = 1 //todo replace with call to figure out how many points to add with current upgrades
         if (oldPointValue != null) {
             val newPointValue = oldPointValue + pointsToAdd
-
-            updateUI(newPointValue)
+            gameViewModel.setPoints(newPointValue)
         } else {
             Log.e(TAG,"Points is null! Will not update")
         }

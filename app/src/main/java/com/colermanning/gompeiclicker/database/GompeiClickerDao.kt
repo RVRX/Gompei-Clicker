@@ -15,9 +15,11 @@ import java.util.*
 @Dao
 interface GompeiClickerDao {
 
-    //todo, getPoints
     @Query("SELECT currentPoints FROM game_table")
     fun getPoints(): LiveData<Int>
+
+    @Query("UPDATE game_table SET currentPoints=(:points)")
+    fun updatePoints(points: Int)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addUpgrade(upgrade: Upgrade)
