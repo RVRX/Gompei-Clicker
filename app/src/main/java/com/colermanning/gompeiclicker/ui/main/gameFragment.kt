@@ -37,13 +37,25 @@ class gameFragment : Fragment() {
         // Gompei Image onClick Listener
         gompeiImageView.setOnClickListener { view: View ->
             Log.d(TAG, "Gompei Clicked!")
-
-            //todo, click action
-            //  ...
+            gompeiClick() //run Gompei click action
         }
 
 
         return view
+    }
+
+    /**
+     * Runs action for a gompei Click...
+     *
+     * todo: this will call the repository (I think), which will look at current settings,
+     *  and get upgrade info to figure out how much a click is worth, then
+     *  add that many points via the DB.
+     */
+    fun gompeiClick() {
+        // todo, this is just temporary demo action
+        var pointsAsInt = pointsTextView.text.toString().toInt()
+        pointsAsInt++
+        pointsTextView.text = pointsAsInt.toString()
     }
 
     companion object {
