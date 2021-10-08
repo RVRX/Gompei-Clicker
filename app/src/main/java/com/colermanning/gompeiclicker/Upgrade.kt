@@ -10,7 +10,7 @@ import java.util.*
  * @param upgradeType what kind of upgrade (Speed, value...)
  * @param bought has the upgrade been bought
  */
-@Entity
+@Entity(tableName = "upgrade_table")
 data class Upgrade(@PrimaryKey var id: String = "",
 var upgradeType: String = "",
 var modifier: Double = 0.0,

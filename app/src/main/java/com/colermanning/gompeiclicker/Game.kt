@@ -7,6 +7,6 @@ import java.util.*
 /**
  * Will just be one row, and will contain current game points
  */
-@Entity
+@Entity(tableName = "game_table")
 data class Game(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var currentPoints: Int = 0)
