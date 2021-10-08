@@ -44,6 +44,7 @@ class gameFragment : Fragment() {
         gompeiImageView = view.findViewById(R.id.gompeiImageView)
         pointsTextView = view.findViewById(R.id.pointValueText)
 
+        // Gompei Image onClick Listener
         gompeiImageView.setOnTouchListener { v, event ->
             val bmp = convertViewToDrawable(v)
             var color: Int
