@@ -10,6 +10,10 @@
     <string name="mascot_name">Gompei The Goat</string>
     <string name="default_point_value">0</string>
     <string name="powerup_1">Hay For Gompei</string>
+    <string name="powerup_1_desc">Gompei eats some hay! He has a full stomach and earns 1.25x the Innovation Bucks.</string>
+    <string name="powerup_2_desc">Gompei eats a sugar cube! He is now hyperactive and earn 1.25 the Innovation Points.</string>
+    <string name="powerup_3_desc">Gompei gets an education! He knows more about innovation now and will .</string>
+    <string name="powerup_4_desc">Gompei takes a study break! He is relaxing from finals and will.</string>
     <string name="powerup_2">Sugar Cube</string>
     <string name="powerup_3">Education</string>
     <string name="powerup_4">Study Break</string>

@@ -21,6 +21,9 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/powerup_1"
@@ -29,14 +32,28 @@
                 app:srcCompat="@drawable/meltamogus"
                 android:clickable="false"
                 android:scaleType="fitXY"/>
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:clickable="false"
-                android:text="@string/powerup_1" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_1" />
+                <TextView
+                    android:id="@+id/powerup_1_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_1_desc" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -48,19 +65,38 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
             <ImageView
                 android:id="@+id/powerup_2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 app:srcCompat="@drawable/meltamogus"
                 android:scaleType="fitXY"/>
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="@string/powerup_2" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_2" />
+                <TextView
+                    android:id="@+id/powerup_2_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_2_desc" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -71,7 +107,9 @@
             android:orientation="horizontal"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
-
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -80,12 +118,28 @@
                 app:srcCompat="@drawable/meltamogus"
                 android:scaleType="fitXY"/>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="@string/powerup_3" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_3" />
+                <TextView
+                    android:id="@+id/powerup_3_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_3_desc" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -97,6 +151,9 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -105,12 +162,28 @@
                 app:srcCompat="@drawable/meltamogus"
                 android:scaleType="fitXY" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="@string/powerup_4" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_4" />
+                <TextView
+                    android:id="@+id/powerup_4_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:clickable="false"
+                    android:text="@string/powerup_4_desc" />
+            </LinearLayout>
         </LinearLayout>
         </LinearLayout>
     </ScrollView>
