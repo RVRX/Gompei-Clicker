@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         setContentView(binding.root)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        sectionsPagerAdapter.addFragment(gameFragment(), "Game")
-        sectionsPagerAdapter.addFragment(shopFragment(),"Shop")
+        sectionsPagerAdapter.addFragment(gameFragment.newInstance(), "Game")
+        sectionsPagerAdapter.addFragment(shopFragment.newInstance(),"Shop")
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
