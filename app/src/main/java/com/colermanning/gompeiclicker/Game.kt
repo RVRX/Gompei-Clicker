@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 /**
- * Will just be one row, and will contain current game info
+ * Will just be one row, and will contain current game points
  */
 @Entity
 data class Game(@PrimaryKey val id: UUID = UUID.randomUUID(),
-                var currentPoints: Int = 0,
-                var multiplier: Double = 0.0)
+                var currentPoints: Int = 0)

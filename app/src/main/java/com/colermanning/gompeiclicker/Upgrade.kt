@@ -6,8 +6,8 @@ import java.util.*
 
 /**
  * Each row is a specific upgrade
- * @param id an ID to represent the upgrade
- * @param upgradeType what kind of upgrade is it. Speed, value...
+ * @param id an name for the upgrade
+ * @param upgradeType what kind of upgrade (Speed, value...)
  * @param bought has the upgrade been bought
  */
 @Entity
