@@ -6,4 +6,7 @@
     <string name="game_title">Gompei Clicker</string>
     <string name="settings">Settings</string>
     <string name="save_settings">Save Settings</string>
+    <string name="points_name">Innovation Points</string>
+    <string name="mascot_name">Gompei The Goat</string>
+    <string name="default_point_value">0</string>
 </resources>
