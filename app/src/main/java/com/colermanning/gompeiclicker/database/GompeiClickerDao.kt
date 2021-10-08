@@ -1,5 +1,6 @@
 package com.colermanning.gompeiclicker.database
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.colermanning.gompeiclicker.Game
@@ -18,14 +19,19 @@ interface GompeiClickerDao {
     @Query("SELECT currentPoints FROM game_table")
     fun getPoints(): LiveData<Int>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addUpgrade(upgrade: Upgrade)
+
+    @Query("DELETE FROM upgrade_table")
+    fun deleteAllUpgrades()
+
+
 
 //    @Query("SELECT * FROM upgrade_table")
 //    fun getUpgrades() : LiveData<List<Upgrade>>
 
-//    @Insert(onConflict = OnConflictStrategy.ABORT)
-//    fun addGame(game: Game)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun addGame(game: Game)
 //
 //    @Query("SELECT * FROM game_table")
 //    fun getGames(id : UUID): LiveData<List<Game>>

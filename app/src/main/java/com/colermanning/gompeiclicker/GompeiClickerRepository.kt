@@ -36,6 +36,21 @@ class GompeiClickerRepository private constructor(context: Context) {
         }
     }
 
+    fun populateDefaults() {
+        executor.execute {
+            //empty current DB stuff
+            gompeiClickerDao.deleteAllUpgrades()
+
+            //single default game
+            gompeiClickerDao.addGame(Game(currentPoints = 30))
+
+            //Upgrade options
+            addUpgrade("Hay", "ClickValue", 1.25)
+            addUpgrade("Sugar", "ClickValue", 1.5)
+            addUpgrade("Education", "ClickValue", 2.0)
+        }
+    }
+
     companion object {
         private var INSTANCE: GompeiClickerRepository? = null
 
