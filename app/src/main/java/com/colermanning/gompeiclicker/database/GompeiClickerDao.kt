@@ -13,8 +13,8 @@ import androidx.room.Update
 interface GompeiClickerDao {
 
     //todo, getPoints
-//    @Query("...")
-//    fun getPoints(): Int
+    @Query("SELECT currentPoints FROM game")
+    fun getPoints(): Int
 
     //todo, setPoints()
 //    @Update
