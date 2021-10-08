@@ -13,4 +13,6 @@ import com.colermanning.gompeiclicker.Upgrade
 @Database(entities = [ Game::class, Upgrade::class ], version = 1)
 @TypeConverters(GompeiClickerTypeConverters::class)
 abstract class GompeiClickerDatabase : RoomDatabase() {
+
+    abstract fun gompeiClickerDao(): GompeiClickerDao
 }
