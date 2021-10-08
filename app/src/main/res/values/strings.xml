@@ -9,4 +9,8 @@
     <string name="points_name">Innovation Points</string>
     <string name="mascot_name">Gompei The Goat</string>
     <string name="default_point_value">0</string>
+    <string name="powerup_1">Hay For Gompei</string>
+    <string name="powerup_2">Sugar Cube</string>
+    <string name="powerup_3">Education</string>
+    <string name="powerup_4">Study Break</string>
 </resources>
