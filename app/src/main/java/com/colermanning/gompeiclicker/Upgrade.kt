@@ -12,6 +12,8 @@ import java.util.*
  */
 @Entity(tableName = "upgrade_table")
 data class Upgrade(@PrimaryKey var id: String = "",
-var upgradeType: String = "",
-var modifier: Double = 0.0,
-var bought: Boolean = false)
+                   var upgradeType: String = "",
+                   var description: String = "",
+                   var cost: Int = 1,
+                   var modifier: Double = 0.0,
+                   var bought: Boolean = false)

@@ -30,9 +30,9 @@ class GompeiClickerRepository private constructor(context: Context) {
     //todo, add a function here for each function in the DAO
     fun getPoints(): LiveData<Int> = gompeiClickerDao.getPoints()
 
-    fun addUpgrade(id: String, upgradeType: String, modifier: Double, bought : Boolean = false) {
+    fun addUpgrade(id: String, upgradeType: String, description:String, cost: Int, modifier: Double, bought : Boolean = false) {
         executor.execute {
-            gompeiClickerDao.addUpgrade(Upgrade(id, upgradeType, modifier, bought))
+            gompeiClickerDao.addUpgrade(Upgrade(id, upgradeType, description, cost, modifier, bought))
         }
     }
 
@@ -45,9 +45,9 @@ class GompeiClickerRepository private constructor(context: Context) {
             gompeiClickerDao.addGame(Game(currentPoints = 30))
 
             //Upgrade options
-            addUpgrade("Hay", "ClickValue", 1.25)
-            addUpgrade("Sugar", "ClickValue", 1.5)
-            addUpgrade("Education", "ClickValue", 2.0)
+            addUpgrade("Hay", "ClickValue", "Hay Description...", 25, 1.25)
+            addUpgrade("Sugar", "ClickValue", "Sugar Description...", 50, 1.5)
+            addUpgrade("Education", "ClickValue", "Education Description...", 100,2.0)
         }
     }
 
