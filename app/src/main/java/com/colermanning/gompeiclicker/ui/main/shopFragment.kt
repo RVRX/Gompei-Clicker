@@ -35,17 +35,18 @@ class shopFragment : Fragment() {
         layout4 = view.findViewById(R.id.linear_layout_4)
 
         layout1.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked education")
+            Log.d("fortnite", "you clicked Hay For Gompei")
         }
         layout2.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked education")
+            Log.d("fortnite", "you clicked Sugar Cube")
         }
         layout3.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked education")
+            Log.d("fortnite", "you clicked Education")
         }
         layout4.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked education")
+            Log.d("fortnite", "you clicked Study Break")
         }
+
         return view
     }
 

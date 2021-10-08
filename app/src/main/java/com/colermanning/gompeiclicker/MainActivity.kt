@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = binding.fab
 
+        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_videogame_asset_24)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_shop_24)
+
         fab.setOnClickListener { view ->
             setContentView(R.layout.fragment_main)
                 val fragment = SettingsFragment.newInstance()
@@ -70,6 +73,9 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = binding.fab
+
+        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_videogame_asset_24)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_shop_24)
 
         fab.setOnClickListener { view ->
             setContentView(R.layout.fragment_main)
