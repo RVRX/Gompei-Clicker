@@ -1,5 +1,6 @@
 package com.colermanning.gompeiclicker
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -9,8 +10,15 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.colermanning.gompeiclicker.databinding.ActivityMainBinding
 import com.colermanning.gompeiclicker.ui.main.*
+import com.colermanning.gompeiclicker.ui.main.BackgroundSoundService
+
+import android.content.Intent
+
+
+
 
 class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsFragment.Callbacks {
 
@@ -20,6 +28,10 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.fragment_main)
+        val action = "PLAY"
+        val myService = Intent(this@MainActivity, BackgroundSoundService::class.java)
+        myService.action = action
+        startService(myService)
 
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.constraintLayout)
@@ -33,6 +45,7 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
                 .add(R.id.constraintLayout, fragment)
                 .commit()
         }
+
     }
 
     override fun onStartGameSelected(){
@@ -47,6 +60,9 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = binding.fab
+
+        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_videogame_asset_24)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_shop_24)
 
         fab.setOnClickListener { view ->
             setContentView(R.layout.fragment_main)
@@ -70,6 +86,9 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = binding.fab
+
+        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_videogame_asset_24)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_shop_24)
 
         fab.setOnClickListener { view ->
             setContentView(R.layout.fragment_main)
