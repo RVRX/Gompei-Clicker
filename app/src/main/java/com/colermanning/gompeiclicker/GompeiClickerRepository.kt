@@ -1,13 +1,21 @@
 package com.colermanning.gompeiclicker
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.colermanning.gompeiclicker.database.GompeiClickerDatabase
 import java.lang.IllegalStateException
 import java.util.concurrent.Executors
+import androidx.sqlite.db.SupportSQLiteDatabase
+
+import androidx.room.RoomDatabase
+
+
+
 
 private const val DATABASE_NAME = "gompei-clicker-database"
+private const val TAG = "GompeiClickerRepository"
 
 /**
  * GameRepository is a Singleton class that gives the app an owner for the game data
@@ -22,6 +30,14 @@ class GompeiClickerRepository private constructor(context: Context) {
         context.applicationContext,
         GompeiClickerDatabase::class.java,
         DATABASE_NAME
+    ).addCallback(
+        object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                Log.i(TAG, "First Time DB Creation... populating defaults")
+                populateDefaults() //adds upgrades and new game to DB
+            }
+        }
     ).build()
 
     private val gompeiClickerDao = database.gompeiClickerDao()
@@ -48,12 +64,12 @@ class GompeiClickerRepository private constructor(context: Context) {
             gompeiClickerDao.deleteAllUpgrades()
 
             //single default game
-            gompeiClickerDao.addGame(Game(currentPoints = 30))
+            gompeiClickerDao.addGame(Game(currentPoints = 0))
 
             //Upgrade options
-            addUpgrade("Hay", "ClickValue", "Hay Description...", 25, 1.25)
-            addUpgrade("Sugar", "ClickValue", "Sugar Description...", 50, 1.5)
-            addUpgrade("Education", "ClickValue", "Education Description...", 100,2.0)
+            addUpgrade("Hay", "ClickValue", "Hay Description...", 25, 1.5)
+            addUpgrade("Sugar", "ClickValue", "Sugar Description...", 50, 2.0)
+            addUpgrade("Education", "ClickValue", "Education Description...", 100,2.5)
         }
     }
 
