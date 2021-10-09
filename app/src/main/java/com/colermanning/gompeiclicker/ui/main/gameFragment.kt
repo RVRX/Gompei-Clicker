@@ -49,18 +49,11 @@ class gameFragment : Fragment() {
                 Log.d(TAG, "Response received: $responseString")
                 gameViewModel.weatherString = responseString;
 
-                /**
-                TODO:
-                    parse response to get weather (GSON?).
-                    Replace parsedString with parsed result,
-                    and edit `when` statement to reflect options
-                 */
-                val parsedString = "Cloud" //todo parse response to get weather (GSON?). Replace this variable with result
-                when (parsedString) {
+                when (responseString) {
                     "Snow" -> updateUIBackground(R.drawable.weather_snow)
                     "Rain" -> updateUIBackground(R.drawable.weather_rain)
-                    "Cloud" -> updateUIBackground(R.drawable.weather_cloud)
-                    "Sun" -> updateUIBackground(R.drawable.weather_sun)
+                    "Clouds" -> updateUIBackground(R.drawable.weather_cloud)
+                    "Clear" -> updateUIBackground(R.drawable.weather_sun)
                 }
             }
         )

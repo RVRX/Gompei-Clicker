@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.colermanning.gompeiclicker.api.OpenWeatherApi
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,9 +37,28 @@ class WeatherChecker {
                 response: Response<String>
             ){
                 Log.d(TAG, "Response received")
+                responseLiveData.value = parseResponse(response)
                 responseLiveData.value = response.body()
             }
         })
         return responseLiveData
+    }
+
+    /**
+     * Parses the response to get the current weather type
+     * @return one of "Clouds", "Clear", "Rain, "Snow". Defaults to "Clear" if input is bad
+     * todo haven't verified snow as a return
+     */
+    fun parseResponse(response: Response<String>): String {
+        val resBody = response.body()
+        var weatherStatus = "Clear" //default
+
+        if (resBody != null && resBody.contains("description")) { //!null and contains the correct main object
+            val afterMain = resBody.substring((resBody.indexOf("main") + 7)) //after "main":
+            weatherStatus = afterMain.substring(0,afterMain.indexOf("\"")) //till next quote
+        }
+
+
+        return weatherStatus;
     }
 }
