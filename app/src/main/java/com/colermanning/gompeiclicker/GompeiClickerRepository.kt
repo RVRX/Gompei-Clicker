@@ -46,17 +46,20 @@ class GompeiClickerRepository private constructor(context: Context) {
     //todo, add a function here for each function in the DAO
     fun getPoints(): LiveData<Int> = gompeiClickerDao.getPoints()
 
+    fun setPoints(points: Int) {
+        executor.execute {
+            gompeiClickerDao.updatePoints(points)
+        }
+    }
+
+    fun getUpgrades(): LiveData<List<Upgrade>> = gompeiClickerDao.getUpgrades()
+
     fun addUpgrade(id: String, upgradeType: String, description:String, cost: Int, modifier: Double, bought : Boolean = false) {
         executor.execute {
             gompeiClickerDao.addUpgrade(Upgrade(id, upgradeType, description, cost, modifier, bought))
         }
     }
 
-    fun setPoints(points: Int) {
-        executor.execute {
-            gompeiClickerDao.updatePoints(points)
-        }
-    }
 
     fun populateDefaults() {
         executor.execute {

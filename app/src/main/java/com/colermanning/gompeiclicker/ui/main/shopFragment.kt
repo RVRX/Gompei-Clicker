@@ -12,11 +12,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.colermanning.gompeiclicker.GompeiClickerRepository
 import com.colermanning.gompeiclicker.R
+import com.colermanning.gompeiclicker.ShopViewModel
 import com.colermanning.gompeiclicker.Upgrade
+
+
+private const val TAG = "ShopFragment"
 
 class shopFragment : Fragment() {
 
@@ -32,6 +38,12 @@ class shopFragment : Fragment() {
     private lateinit var shopRecyclerView: RecyclerView
     private var adapter: ShopAdapter? = ShopAdapter(emptyList())
 
+    /**
+     * Get the view model for this fragment
+     */
+    private val shopViewModel: ShopViewModel by lazy {
+        ViewModelProviders.of(this).get(ShopViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +86,27 @@ class shopFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        shopViewModel.shopListLiveData.observe(
+            viewLifecycleOwner,
+            Observer { upgrades ->
+                upgrades?.let {
+                    if(upgrades.size < 2){
+                        Log.i(TAG, "Populating database")
+                        shopViewModel.fillUpgrades()
+                    }
+                    Log.i(TAG, "Got upgrades ${upgrades.size}")
+                    updateUI(upgrades)
+                }
+            })
+    }
+
+    private fun updateUI(upgrades: List<Upgrade>) {
+        adapter = ShopAdapter(upgrades)
+        shopRecyclerView.adapter = adapter
+    }
+
     /**
      * Each 'item' in the list is a ShopHolder (this)
      * A ShopHolder consists of:
@@ -100,7 +133,7 @@ class shopFragment : Fragment() {
 
         fun bind(upgrade: Upgrade) {
             this.upgrade = upgrade
-            nameTextView.text = this.upgrade.upgradeType
+            nameTextView.text = this.upgrade.id
             descTextView.text = this.upgrade.description
             costTextView.text = this.upgrade.cost.toString()
 
