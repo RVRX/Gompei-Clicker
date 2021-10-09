@@ -73,6 +73,12 @@ class GompeiClickerRepository private constructor(context: Context) {
         }
     }
 
+    fun buyUpgradeById(id: String) {
+        executor.execute {
+            gompeiClickerDao.buyUpgradeById(id)
+        }
+    }
+
     fun getModifiersForBoughtClickValueUpgrades() : LiveData<List<Double>> =
         gompeiClickerDao.getModifiersForBoughtClickValueUpgrades()
 

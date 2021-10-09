@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.colermanning.gompeiclicker.GompeiClickerRepository
 import com.colermanning.gompeiclicker.R
 
 class shopFragment : Fragment() {
@@ -17,6 +19,10 @@ class shopFragment : Fragment() {
     private lateinit var layout2: LinearLayout
     private lateinit var layout3: LinearLayout
     private lateinit var layout4: LinearLayout
+
+    //todo, potentially put this in a ViewModel... use same ViewModel as gameFragment?
+    private val gompeiClickerRepository = GompeiClickerRepository.get()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +42,13 @@ class shopFragment : Fragment() {
 
         layout1.setOnClickListener { view: View ->
             Log.d("fortnite", "you clicked Hay For Gompei")
+            gompeiClickerRepository.buyUpgradeById("Hay") //TODO, example usage, actual would be called through ViewModel, and set up in a RecyclerView?
+            Toast.makeText(context, "Bought Hay", Toast.LENGTH_SHORT).show()
         }
         layout2.setOnClickListener { view: View ->
             Log.d("fortnite", "you clicked Sugar Cube")
+            gompeiClickerRepository.buyUpgradeById("Sugar")
+            Toast.makeText(context, "Bought Sugar", Toast.LENGTH_SHORT).show()
         }
         layout3.setOnClickListener { view: View ->
             Log.d("fortnite", "you clicked Education")

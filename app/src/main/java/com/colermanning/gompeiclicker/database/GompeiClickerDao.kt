@@ -33,6 +33,9 @@ interface GompeiClickerDao {
     @Query("SELECT modifier FROM upgrade_table WHERE bought=1 AND upgradeType='ClickValue'")
     fun getModifiersForBoughtClickValueUpgrades(): LiveData<List<Double>>
 
+    @Query("UPDATE upgrade_table SET bought=1 WHERE id=(:id)")
+    fun buyUpgradeById(id: String)
+
 //    @Query("SELECT * FROM upgrade_table")
 //    fun getUpgrades() : LiveData<List<Upgrade>>
 
