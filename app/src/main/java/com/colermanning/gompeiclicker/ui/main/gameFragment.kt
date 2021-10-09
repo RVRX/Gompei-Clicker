@@ -95,7 +95,7 @@ class gameFragment : Fragment() {
             Observer { points ->
                 points?.let {
                     Log.i(TAG, "Got points: $points")
-                    updateUI(points)
+                    updateUIPoints(points)
                 }
             })
 
@@ -140,7 +140,7 @@ class gameFragment : Fragment() {
         return true
     }
 
-    private fun updateUI(points: Int) {
+    private fun updateUIPoints(points: Int) {
         pointsTextView.text = points.toString()
     }
 
