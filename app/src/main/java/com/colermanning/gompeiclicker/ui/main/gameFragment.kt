@@ -14,6 +14,7 @@ import android.graphics.Color
 import android.util.Log
 
 import android.view.MotionEvent
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -29,6 +30,7 @@ class gameFragment : Fragment() {
 
     //lateinits
     private lateinit var gompeiImageView: ImageView
+    private lateinit var backgroundImageView: ImageView
     private lateinit var pointsTextView: TextView
 
     private val gameViewModel: GameViewModel by lazy {
@@ -46,7 +48,20 @@ class gameFragment : Fragment() {
             Observer { responseString ->
                 Log.d(TAG, "Response received: $responseString")
                 gameViewModel.weatherString = responseString;
-                //todo, update ui for weather stuff
+
+                /**
+                TODO:
+                    parse response to get weather (GSON?).
+                    Replace parsedString with parsed result,
+                    and edit `when` statement to reflect options
+                 */
+                val parsedString = "Cloud" //todo parse response to get weather (GSON?). Replace this variable with result
+                when (parsedString) {
+                    "Snow" -> updateUIBackground(R.drawable.weather_snow)
+                    "Rain" -> updateUIBackground(R.drawable.weather_rain)
+                    "Cloud" -> updateUIBackground(R.drawable.weather_cloud)
+                    "Sun" -> updateUIBackground(R.drawable.weather_sun)
+                }
             }
         )
     }
@@ -60,6 +75,7 @@ class gameFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
         //get references to xml elements
         gompeiImageView = view.findViewById(R.id.gompeiImageView)
+        backgroundImageView = view.findViewById(R.id.backgroundImage)
         pointsTextView = view.findViewById(R.id.pointValueText)
 
         // Gompei Image onClick Listener
@@ -142,6 +158,10 @@ class gameFragment : Fragment() {
 
     private fun updateUIPoints(points: Int) {
         pointsTextView.text = points.toString()
+    }
+
+    private fun updateUIBackground(drawableRes: Int) {
+        backgroundImageView.setImageResource(drawableRes)
     }
 
     companion object {
