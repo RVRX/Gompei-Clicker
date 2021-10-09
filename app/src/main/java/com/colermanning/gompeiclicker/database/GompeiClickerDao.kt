@@ -36,8 +36,8 @@ interface GompeiClickerDao {
     @Query("UPDATE upgrade_table SET bought=1 WHERE id=(:id)")
     fun buyUpgradeById(id: String)
 
-//    @Query("SELECT * FROM upgrade_table")
-//    fun getUpgrades() : LiveData<List<Upgrade>>
+    @Query("SELECT * FROM upgrade_table")
+    fun getUpgrades() : LiveData<List<Upgrade>>
 
 //    @Query("SELECT * FROM game_table")
 //    fun getGames(id : UUID): LiveData<List<Game>>

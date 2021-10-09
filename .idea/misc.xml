@@ -3,16 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
-        <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
-        <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout-v23/fragment_shop.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/fragment_game.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/fragment_main.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/fragment_shop.xml" value="0.1" />
         <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/fragment_start_game.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/mason/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/sampa/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/fragment_shop.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/sampa/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/list_item_upgrade.xml" value="0.4742468415937804" />
+        <entry key="..\:/Users/sampa/AndroidStudioProjects/Gompei-Clicker/app/src/main/res/layout/shop_recycler_view.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1361111111111111" />
       </map>
     </option>
