@@ -42,6 +42,7 @@ class gameFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         //API Content:
+        //todo, give fetchContents() the lat and long from device's current location
         val weatherLiveData: LiveData<String> = WeatherChecker().fetchContents()
         weatherLiveData.observe(
             this,

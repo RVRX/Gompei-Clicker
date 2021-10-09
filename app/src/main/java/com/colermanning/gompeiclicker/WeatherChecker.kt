@@ -25,10 +25,10 @@ class WeatherChecker {
         openWeatherApi = retrofit.create(OpenWeatherApi::class.java) //create instance of the API
     }
 
-    fun fetchContents(): LiveData<String> {
+    fun fetchContents(lat: String = "42.3334", lon: String = "-71.8328"): LiveData<String> {
         val responseLiveData: MutableLiveData<String> = MutableLiveData()
-        val flickrRequest: Call<String> = openWeatherApi.fetchContents()
-        flickrRequest.enqueue(object : Callback<String> {
+        val weatherRequest: Call<String> = openWeatherApi.fetchContents(lat, lon) //lat and lon
+        weatherRequest.enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.e(TAG, "Failed to fetch photos", t)
             }
