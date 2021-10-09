@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.colermanning.gompeiclicker.GameViewModel
 import com.colermanning.gompeiclicker.R
+import kotlin.math.ceil
 
 
 private const val TAG = "gameFragment"
@@ -82,8 +83,26 @@ class gameFragment : Fragment() {
             viewLifecycleOwner,
             Observer { points ->
                 points?.let {
-                    Log.i(TAG, "Got points: ${points}")
+                    Log.i(TAG, "Got points: $points")
                     updateUI(points)
+                }
+            })
+
+        /**
+         * Updates [gameViewModel]'s currentMultiplier when
+         * a new upgrade is bought
+         */
+        gameViewModel.ownedClickValueUpgrades.observe(
+            viewLifecycleOwner,
+            Observer { upgrades ->
+                upgrades?.let {
+                    Log.i(TAG, "Upgrades Updated: $upgrades")
+                    var newMultiplier = 1.0
+                    for (upgrade in upgrades) {
+                        newMultiplier = (newMultiplier * upgrade)
+                    }
+                    Log.i(TAG, "New multiplier: $newMultiplier")
+                    gameViewModel.currentClickMultiplier = newMultiplier
                 }
             })
     }
@@ -95,13 +114,14 @@ class gameFragment : Fragment() {
      *  and get upgrade info to figure out how much a click is worth, then
      *  add that many points via the DB.
      */
-    fun gompeiClick(): Boolean {
+    private fun gompeiClick(): Boolean {
         // todo, this is just temporary demo action
         var oldPointValue = gameViewModel.pointLiveData.value
-        var pointsToAdd = 1 //todo replace with call to figure out how many points to add with current upgrades
+        var pointsToAdd = gameViewModel.currentClickMultiplier
         if (oldPointValue != null) {
             val newPointValue = oldPointValue + pointsToAdd
-            gameViewModel.setPoints(newPointValue)
+            Log.d(TAG, "old = $oldPointValue || add $pointsToAdd || result $newPointValue (${ceil(newPointValue).toInt()})")
+            gameViewModel.setPoints(ceil(newPointValue).toInt())
         } else {
             Log.e(TAG,"Points is null! Will not update")
         }

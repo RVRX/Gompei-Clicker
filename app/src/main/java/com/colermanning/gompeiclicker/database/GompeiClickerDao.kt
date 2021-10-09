@@ -27,31 +27,17 @@ interface GompeiClickerDao {
     @Query("DELETE FROM upgrade_table")
     fun deleteAllUpgrades()
 
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun addGame(game: Game)
 
+    @Query("SELECT modifier FROM upgrade_table WHERE bought=1 AND upgradeType='ClickValue'")
+    fun getModifiersForBoughtClickValueUpgrades(): LiveData<List<Double>>
 
 //    @Query("SELECT * FROM upgrade_table")
 //    fun getUpgrades() : LiveData<List<Upgrade>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun addGame(game: Game)
-//
 //    @Query("SELECT * FROM game_table")
 //    fun getGames(id : UUID): LiveData<List<Game>>
-
-    //todo, setPoints()
-//    @Update
-//    fun updateGame()
-
-    //todo, get Upgrades...
-    //  might need to make upgrade class?
-    //  or get individual pieces of upgrades..?
-//    @Query("SELECT * FROM upgrade ")
-//    fun getUpgrades(): ...
-
-    //todo, update a specific upgrade's bought boolean
-//    @Update
-//    fun updateUpgradeBoughtStatus(boolean: Boolean) //todo, not sure about arguments...
-
 
     //todo, more DAO functions...
 }

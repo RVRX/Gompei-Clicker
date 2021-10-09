@@ -57,6 +57,9 @@ class GompeiClickerRepository private constructor(context: Context) {
         }
     }
 
+    fun getModifiersForBoughtClickValueUpgrades() : LiveData<List<Double>> =
+        gompeiClickerDao.getModifiersForBoughtClickValueUpgrades()
+
     companion object {
         private var INSTANCE: GompeiClickerRepository? = null
 
