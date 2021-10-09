@@ -6,6 +6,16 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="633dp"
+        android:layout_height="365dp"
+        android:contentDescription="@string/background_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/weather_sun" />
+
+    <ImageView
         android:id="@+id/gompeiImageView"
         android:layout_width="297dp"
         android:layout_height="348dp"
