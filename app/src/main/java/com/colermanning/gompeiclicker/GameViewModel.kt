@@ -8,6 +8,7 @@ private const val TAG = "GameViewModel"
 
 class GameViewModel : ViewModel() {
 
+    var weatherString: String = ""
     private val gompeiClickerRepository = GompeiClickerRepository.get()
     val pointLiveData = gompeiClickerRepository.getPoints()
     val ownedClickValueUpgrades = gompeiClickerRepository.getModifiersForBoughtClickValueUpgrades()

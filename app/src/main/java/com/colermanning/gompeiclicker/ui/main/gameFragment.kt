@@ -14,10 +14,12 @@ import android.graphics.Color
 import android.util.Log
 
 import android.view.MotionEvent
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.colermanning.gompeiclicker.GameViewModel
 import com.colermanning.gompeiclicker.R
+import com.colermanning.gompeiclicker.WeatherChecker
 import kotlin.math.ceil
 
 
@@ -36,6 +38,17 @@ class gameFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //API Content:
+        val weatherLiveData: LiveData<String> = WeatherChecker().fetchContents()
+        weatherLiveData.observe(
+            this,
+            Observer { responseString ->
+                Log.d(TAG, "Response received: $responseString")
+                gameViewModel.weatherString = responseString;
+                //todo, update ui for weather stuff
+            }
+        )
     }
 
     @SuppressLint("ClickableViewAccessibility")
