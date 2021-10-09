@@ -1,6 +1,7 @@
 package com.colermanning.gompeiclicker.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.location.Location
 import android.util.Log
 
 import android.view.MotionEvent
@@ -21,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.colermanning.gompeiclicker.GameViewModel
 import com.colermanning.gompeiclicker.R
 import com.colermanning.gompeiclicker.WeatherChecker
+import com.google.android.gms.location.*
 import kotlin.math.ceil
 
 
@@ -33,6 +36,10 @@ class gameFragment : Fragment() {
     private lateinit var backgroundImageView: ImageView
     private lateinit var pointsTextView: TextView
 
+    private var currentlat = ""
+    private var currentlong = ""
+
+
     private val gameViewModel: GameViewModel by lazy {
         ViewModelProviders.of(this).get(GameViewModel::class.java)
         //todo https://stackoverflow.com/questions/53903762/viewmodelproviders-is-deprecated-in-1-1-0
@@ -40,14 +47,12 @@ class gameFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //API Content:
+        var weatherLiveData: LiveData<String> = WeatherChecker().fetchContents(currentlat,currentlong)
         //todo, give fetchContents() the lat and long from device's current location
-        val weatherLiveData: LiveData<String> = WeatherChecker().fetchContents()
         weatherLiveData.observe(
             this,
             Observer { responseString ->
-                Log.d(TAG, "Response received: $responseString")
+                Log.d("fortnite", "Response received: $responseString")
                 gameViewModel.weatherString = responseString;
 
                 when (responseString) {
@@ -128,6 +133,18 @@ class gameFragment : Fragment() {
             })
     }
 
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        arguments?.getString("lat")?.let {
+            currentlat = it
+        }
+        arguments?.getString("long")?.let {
+            currentlong  = it
+        }
+    }
+
     /**
      * Runs action for a gompei Click, will add
      * the current multiplier to the click, then
@@ -159,9 +176,10 @@ class gameFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() : gameFragment {
+        fun newInstance(lat: String, long: String) : gameFragment {
             val args = Bundle().apply {
-
+                putString("lat",lat)
+                putString("long",long)
             }
             return gameFragment().apply {
                 arguments = args
