@@ -16,18 +16,4 @@ class GameViewModel : ViewModel() {
     fun setPoints(points: Int) {
         gompeiClickerRepository.setPoints(points)
     }
-
-    /**
-     * Gets the correct amount of points to add for a click
-     * considering all owned upgrades
-     */
-    fun clickPointsToAdd(): Int {
-        Log.d(TAG, "ownedClickValueUpgrades: ${ownedClickValueUpgrades.value}")
-        var multiplier : Double = 1.0
-        ownedClickValueUpgrades.value?.forEach {
-            multiplier = multiplier.times(it)
-        }
-        Log.i(TAG, "clickPointsToAdd(): $multiplier / ${multiplier.roundToInt()}")
-        return multiplier.roundToInt()
-    }
 }

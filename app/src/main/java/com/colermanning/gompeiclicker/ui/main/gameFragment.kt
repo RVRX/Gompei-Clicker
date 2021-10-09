@@ -75,9 +75,7 @@ class gameFragment : Fragment() {
         /**
          * Observes the pointLiveData for changes,
          * will update everytime (from now on) that
-         * the point live data is updated...
-         *
-         * todo... how to update live data...?
+         * the point live data is updated
          */
         gameViewModel.pointLiveData.observe(
             viewLifecycleOwner,
@@ -108,14 +106,14 @@ class gameFragment : Fragment() {
     }
 
     /**
-     * Runs action for a gompei Click...
-     *
-     * todo: this will call the repository (I think), which will look at current settings,
-     *  and get upgrade info to figure out how much a click is worth, then
-     *  add that many points via the DB.
+     * Runs action for a gompei Click, will add
+     * the current multiplier to the click, then
+     * update to the DB as such. There is no need to
+     * manually update the UI, as the UI is observing
+     * the pointLiveData, and therefore will update
+     * automatically.
      */
     private fun gompeiClick(): Boolean {
-        // todo, this is just temporary demo action
         var oldPointValue = gameViewModel.pointLiveData.value
         var pointsToAdd = gameViewModel.currentClickMultiplier
         if (oldPointValue != null) {
