@@ -11,7 +11,12 @@ class ShopViewModel : ViewModel(){
         shopRepository.populateDefaults()
     }
 
-    fun buyUpgrade(upgrade: Upgrade) {
-        shopRepository.buyUpgradeById(upgrade.id)
+    fun buyUpgrade(upgrade: Upgrade) : Boolean {
+        return if(upgrade.bought){
+            false
+        } else{
+            shopRepository.buyUpgradeById(upgrade.id)
+            true
+        }
     }
 }

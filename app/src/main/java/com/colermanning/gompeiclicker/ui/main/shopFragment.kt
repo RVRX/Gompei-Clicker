@@ -139,10 +139,17 @@ class shopFragment : Fragment() {
             Log.d(TAG, "${upgrade.id} clicked!")
 
             //buy upgrade
-            shopViewModel.buyUpgrade(upgrade)
+            var result = shopViewModel.buyUpgrade(upgrade)
             costTextView.text = getString(R.string.upgrade_purchased)
-            Toast.makeText(context, "${upgrade.id} Bought!", Toast.LENGTH_SHORT)
-                .show()
+            if (result){
+                Toast.makeText(context, "${upgrade.id} Purchased!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            else{
+                Toast.makeText(context, "${upgrade.id} has already been purchased!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
 
         }
 
