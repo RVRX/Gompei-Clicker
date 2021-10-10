@@ -124,7 +124,13 @@ class shopFragment : Fragment() {
             this.upgrade = upgrade
             nameTextView.text = this.upgrade.id
             descTextView.text = this.upgrade.description
-            costTextView.text = this.upgrade.cost.toString()
+            if(upgrade.bought){
+                costTextView.text = getString(R.string.upgrade_purchased)
+            }
+            else{
+                costTextView.text = this.upgrade.cost.toString()
+            }
+
 
 
         }
@@ -134,6 +140,7 @@ class shopFragment : Fragment() {
 
             //buy upgrade
             shopViewModel.buyUpgrade(upgrade)
+            costTextView.text = getString(R.string.upgrade_purchased)
             Toast.makeText(context, "${upgrade.id} Bought!", Toast.LENGTH_SHORT)
                 .show()
 
