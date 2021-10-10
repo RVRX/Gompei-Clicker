@@ -62,6 +62,20 @@ class SettingsFragment : Fragment() {
             myService.action = action
             requireContext().startService(myService)
         }
+
+        nextButton.setOnClickListener{ view: View ->
+            val action = "NEXT"
+            val myService = Intent(requireContext(), BackgroundSoundService::class.java)
+            myService.action = action
+            requireContext().startService(myService)
+        }
+
+        previousButton.setOnClickListener{ view: View ->
+            val action = "PREVIOUS"
+            val myService = Intent(requireContext(), BackgroundSoundService::class.java)
+            myService.action = action
+            requireContext().startService(myService)
+        }
         return view
     }
 
