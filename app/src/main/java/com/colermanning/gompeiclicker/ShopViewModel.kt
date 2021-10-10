@@ -10,4 +10,8 @@ class ShopViewModel : ViewModel(){
     fun fillUpgrades() {
         shopRepository.populateDefaults()
     }
+
+    fun buyUpgrade(upgrade: Upgrade) {
+        shopRepository.buyUpgradeById(upgrade.id)
+    }
 }

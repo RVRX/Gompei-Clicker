@@ -130,10 +130,12 @@ class shopFragment : Fragment() {
         }
 
         override fun onClick(v: View?) {
-            Toast.makeText(context, "${upgrade.id} clicked!", Toast.LENGTH_SHORT)
-                .show()
+            Log.d(TAG, "${upgrade.id} clicked!")
 
-            Log.d(TAG, "Item clicked!")
+            //buy upgrade
+            shopViewModel.buyUpgrade(upgrade)
+            Toast.makeText(context, "${upgrade.id} Bought!", Toast.LENGTH_SHORT)
+                .show()
 
         }
 
