@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.colermanning.gompeiclicker.GompeiClickerRepository
 import com.colermanning.gompeiclicker.R
 import com.colermanning.gompeiclicker.ShopViewModel
 import com.colermanning.gompeiclicker.Upgrade
@@ -26,14 +25,14 @@ private const val TAG = "ShopFragment"
 
 class shopFragment : Fragment() {
 
-    private lateinit var powerup1: ImageView
-    private lateinit var layout1: LinearLayout
-    private lateinit var layout2: LinearLayout
-    private lateinit var layout3: LinearLayout
-    private lateinit var layout4: LinearLayout
+    /**
+     * Required interface for hosting activities
+     */
+    interface Callbacks {
+        //fun onGameSelected(gameId: UUID)
+    }
 
-    //todo, potentially put this in a ViewModel... use same ViewModel as gameFragment?
-    private val gompeiClickerRepository = GompeiClickerRepository.get()
+    private var callbacks: Callbacks? = null
 
     private lateinit var shopRecyclerView: RecyclerView
     private var adapter: ShopAdapter? = ShopAdapter(emptyList())
@@ -49,6 +48,12 @@ class shopFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        //callbacks = context as Callbacks?
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,28 +61,6 @@ class shopFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.shop_recycler_view, container, false)
 
-        /*powerup1 = view.findViewById(R.id.powerup_1)
-        layout1 = view.findViewById(R.id.linear_layout_1)
-        layout2 = view.findViewById(R.id.linear_layout_2)
-        layout3 = view.findViewById(R.id.linear_layout_3)
-        layout4 = view.findViewById(R.id.linear_layout_4)
-
-        layout1.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked Hay For Gompei")
-            gompeiClickerRepository.buyUpgradeById("Hay") //TODO, example usage, actual would be called through ViewModel, and set up in a RecyclerView?
-            Toast.makeText(context, "Bought Hay", Toast.LENGTH_SHORT).show()
-        }
-        layout2.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked Sugar Cube")
-            gompeiClickerRepository.buyUpgradeById("Sugar")
-            Toast.makeText(context, "Bought Sugar", Toast.LENGTH_SHORT).show()
-        }
-        layout3.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked Education")
-        }
-        layout4.setOnClickListener { view: View ->
-            Log.d("fortnite", "you clicked Study Break")
-        } */
         shopRecyclerView =
             view.findViewById(R.id.shop_recycler_view) as RecyclerView
         shopRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -102,6 +85,11 @@ class shopFragment : Fragment() {
             })
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        //callbacks = null
+    }
+
     private fun updateUI(upgrades: List<Upgrade>) {
         adapter = ShopAdapter(upgrades)
         shopRecyclerView.adapter = adapter
@@ -115,12 +103,13 @@ class shopFragment : Fragment() {
      *  - Cost (costTextView)
      *  - Icon (iconImageView)
      */
+
     private inner class ShopHolder(view: View)
         : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private lateinit var upgrade: Upgrade
 
-        //get variables from XML (list_item_game.xml)
+        //get variables from XML (list_item_upgrade.xml)
         val nameTextView: TextView = itemView.findViewById(R.id.upgrade_name)
         val descTextView: TextView = itemView.findViewById(R.id.upgrade_description)
         val costTextView: TextView = itemView.findViewById(R.id.upgrade_cost)
@@ -144,9 +133,12 @@ class shopFragment : Fragment() {
             Toast.makeText(context, "${upgrade.id} clicked!", Toast.LENGTH_SHORT)
                 .show()
 
+            Log.d(TAG, "Item clicked!")
+
         }
 
     }
+
 
 /**
  * Adapter to populate the RecyclerView
