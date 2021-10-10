@@ -131,7 +131,24 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         getLastLocation()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        sectionsPagerAdapter.addFragment(gameFragment.newInstance(currentLocation.latitude.toString(),  currentLocation.longitude.toString()), "Game")
+
+        if (::currentLocation.isInitialized) {
+            sectionsPagerAdapter.addFragment(
+                gameFragment.newInstance(
+                    currentLocation.latitude.toString(),
+                    currentLocation.longitude.toString()
+                ), "Game"
+            )
+        }
+        else {
+            sectionsPagerAdapter.addFragment(
+                gameFragment.newInstance(
+                    "0",
+                    "0"
+                ), "Game"
+            )
+        }
+
         sectionsPagerAdapter.addFragment(shopFragment.newInstance(), "Shop")
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
@@ -160,7 +177,24 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
         getLastLocation()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        sectionsPagerAdapter.addFragment(gameFragment.newInstance(currentLocation.latitude.toString(),  currentLocation.longitude.toString()), "Game")
+
+        if (::currentLocation.isInitialized) {
+            sectionsPagerAdapter.addFragment(
+                gameFragment.newInstance(
+                    currentLocation.latitude.toString(),
+                    currentLocation.longitude.toString()
+                ), "Game"
+            )
+        }
+        else {
+            sectionsPagerAdapter.addFragment(
+                gameFragment.newInstance(
+                    "0",
+                    "0"
+                ), "Game"
+            )
+        }
+
         sectionsPagerAdapter.addFragment(shopFragment.newInstance(),"Shop")
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
