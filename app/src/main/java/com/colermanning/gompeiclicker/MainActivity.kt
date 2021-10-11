@@ -17,7 +17,7 @@ import android.view.View
 import com.colermanning.gompeiclicker.databinding.ActivityMainBinding
 import com.colermanning.gompeiclicker.ui.main.*
 import com.colermanning.gompeiclicker.ui.main.BackgroundSoundService
-
+import com.colermanning.gompeiclicker.R
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -134,8 +134,8 @@ class MainActivity : LocaleAwareCompatActivity(), GameStartFragment.Callbacks, S
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
 
-        val tab1name = R.string.tab_text_1
-        val tab2name = R.string.tab_text_2
+        val tab1name = getResources().getString(R.string.tab_text_1)
+        val tab2name = getResources().getString(R.string.tab_text_2)
 
         if (::currentLocation.isInitialized) {
             sectionsPagerAdapter.addFragment(
@@ -183,9 +183,8 @@ class MainActivity : LocaleAwareCompatActivity(), GameStartFragment.Callbacks, S
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
 
-        val tab1name = R.string.tab_text_1
-        val tab2name = R.string.tab_text_2
-
+        val tab1name = getResources().getString(R.string.tab_text_1)
+        val tab2name = getResources().getString(R.string.tab_text_2)
 
         if (::currentLocation.isInitialized) {
             sectionsPagerAdapter.addFragment(

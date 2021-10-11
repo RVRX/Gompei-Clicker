@@ -19,6 +19,7 @@
     <string name="powerup_4">Study Break</string>
     <string name="background_image">background image</string>
     <string name="music">music</string>
+    <string name="delete_save">Erase save data?</string>
     <string name="language">language</string>
     <string name="english">English</string>
     <string name="spanish">Español</string>
