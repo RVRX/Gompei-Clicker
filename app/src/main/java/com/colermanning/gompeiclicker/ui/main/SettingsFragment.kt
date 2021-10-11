@@ -104,6 +104,16 @@ class SettingsFragment : Fragment() {
             val manager = requireActivity().supportFragmentManager
             manager.beginTransaction().remove(this).commit()
         }
+        jpButton.setOnClickListener { view: View ->
+            //callbacks?.changeLocale("jp")
+            val manager = requireActivity().supportFragmentManager
+            manager.beginTransaction().remove(this).commit()
+        }
+        krButton.setOnClickListener { view: View ->
+            //callbacks?.changeLocale("jp")
+            val manager = requireActivity().supportFragmentManager
+            manager.beginTransaction().remove(this).commit()
+        }
         return view
     }
 
