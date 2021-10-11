@@ -56,6 +56,8 @@ class SettingsFragment : Fragment() {
 
         SaveSettingsButton.setOnClickListener{ view: View ->
             callbacks?.onSaveSettingsSelected()
+            val manager = requireActivity().supportFragmentManager
+            manager.beginTransaction().remove(this).commit()
         }
 
         playButton.setOnClickListener{ view: View ->

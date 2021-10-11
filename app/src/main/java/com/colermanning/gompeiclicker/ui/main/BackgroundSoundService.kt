@@ -24,12 +24,13 @@ class BackgroundSoundService : Service() {
     override fun onCreate() {
         super.onCreate()
         playlist = ArrayList()
-        playlist.add(R.raw.theabacus)
-        playlist.add(R.raw.badapplewithout2or4)
-        playlist.add(R.raw.lamar)
-        player = MediaPlayer.create(this, playlist.get(0));
+        playlist.add(R.raw.abacus)
+        playlist.add(R.raw.necrofantasiajazz)
+        playlist.add(R.raw.heavenp4)
+        playlist.add(R.raw.staywithme)
+        player = MediaPlayer.create(this, playlist.get(0))
         //player.setLooping(true); // Set looping
-        player.setVolume(100f,100f);
+        player.setVolume(75f,75f);
         player.setOnCompletionListener(OnCompletionListener { mp ->
             player.reset()
             if (songCount == playlist.size-1) {
@@ -97,32 +98,28 @@ class BackgroundSoundService : Service() {
     }
 
     override fun onStart(intent: Intent, startId: Int) {
-        // TO DO
     }
 
     fun onUnBind(arg0: Intent): IBinder? {
-        // TO DO Auto-generated method
         return null
     }
 
     fun onStop() {
-
     }
 
     fun onPause() {
-
     }
 
     fun isPlaying(): Boolean {
         return player.isPlaying()
     }
+
     override fun onDestroy() {
         player.stop()
         player.release()
     }
 
     override fun onLowMemory() {
-
     }
 
     companion object {
