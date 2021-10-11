@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import com.colermanning.gompeiclicker.MainActivity
 import com.colermanning.gompeiclicker.R
 
 class SettingsFragment : Fragment() {
@@ -25,6 +24,7 @@ class SettingsFragment : Fragment() {
     private lateinit var  playButton: ImageButton
     private lateinit var  pauseButton: ImageButton
     private lateinit var  nextButton: ImageButton
+    private lateinit var deleteButton: ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +42,7 @@ class SettingsFragment : Fragment() {
         playButton = view.findViewById(R.id.play_button)
         pauseButton = view.findViewById(R.id.pause_button)
         nextButton = view.findViewById(R.id.next_song)
+        deleteButton = view.findViewById(R.id.delete_save_button)
 
         SaveSettingsButton.setOnClickListener{ view: View ->
 
@@ -75,6 +76,10 @@ class SettingsFragment : Fragment() {
             val myService = Intent(requireContext(), BackgroundSoundService::class.java)
             myService.action = action
             requireContext().startService(myService)
+        }
+
+        deleteButton.setOnClickListener { view: View ->
+            /*TODO make dao function that erases all points. call erase points func and erase upgrades func. */
         }
         return view
     }
