@@ -12,11 +12,17 @@ import androidx.fragment.app.Fragment
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
 import android.util.Log
 
 import android.view.MotionEvent
+import android.widget.Toast
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,7 +30,9 @@ import com.colermanning.gompeiclicker.GameViewModel
 import com.colermanning.gompeiclicker.R
 import com.colermanning.gompeiclicker.WeatherChecker
 import com.google.android.gms.location.*
+import java.util.*
 import kotlin.math.ceil
+import kotlin.math.sqrt
 
 
 private const val TAG = "gameFragment"
@@ -39,6 +47,10 @@ class gameFragment : Fragment() {
     private var currentlat = ""
     private var currentlong = ""
 
+    private var sensorManager: SensorManager? = null
+    private var acceleration = 0f
+    private var currentAcceleration = 0f
+    private var lastAcceleration = 0f
 
     private val gameViewModel: GameViewModel by lazy {
         ViewModelProviders.of(this).get(GameViewModel::class.java)
@@ -63,6 +75,42 @@ class gameFragment : Fragment() {
                 }
             }
         )
+
+        //Gets accelerometer sensor, sets base accelerations to earth so it doesn't automatically shake
+        sensorManager = context?.let { getSystemService(it, SensorManager::class.java) }
+        Objects.requireNonNull(sensorManager)!!.registerListener(sensorListener, sensorManager!!
+            .getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL)
+        acceleration = 10f
+        currentAcceleration = SensorManager.GRAVITY_EARTH
+        lastAcceleration = SensorManager.GRAVITY_EARTH
+    }
+
+    //Shake listener compares two last movements, if fast enough counts as a shake
+    private val sensorListener: SensorEventListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent) {
+            val x = event.values[0]
+            val y = event.values[1]
+            val z = event.values[2]
+            lastAcceleration = currentAcceleration
+            currentAcceleration = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
+            val delta: Float = currentAcceleration - lastAcceleration
+            acceleration = acceleration * 0.9f + delta
+            if (acceleration > 8) {
+                Log.d(TAG, "Shake it!")
+                gompeiClick()
+            }
+        }
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    }
+    override fun onResume() {
+        sensorManager?.registerListener(sensorListener, sensorManager!!.getDefaultSensor(
+            Sensor .TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL
+        )
+        super.onResume()
+    }
+    override fun onPause() {
+        sensorManager!!.unregisterListener(sensorListener)
+        super.onPause()
     }
 
     @SuppressLint("ClickableViewAccessibility")
