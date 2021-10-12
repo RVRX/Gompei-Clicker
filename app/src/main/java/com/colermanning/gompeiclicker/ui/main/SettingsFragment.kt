@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.colermanning.gompeiclicker.GompeiClickerRepository
 import com.colermanning.gompeiclicker.R
 import com.zeugmasolutions.localehelper.Locales
 
 class SettingsFragment : Fragment() {
+    private val shopRepository = GompeiClickerRepository.get()
 
     interface Callbacks {
         fun onSaveSettingsSelected()
@@ -90,6 +92,7 @@ class SettingsFragment : Fragment() {
 
         deleteButton.setOnClickListener { view: View ->
             /*TODO make dao function that erases all points. call erase points func and erase upgrades func. */
+            shopRepository.eraseAllProgress()
         }
 
         esButton.setOnClickListener { view: View ->

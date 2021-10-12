@@ -95,6 +95,13 @@ class GompeiClickerRepository private constructor(context: Context) {
         }
     }
 
+    fun eraseAllProgress(){
+        executor.execute {
+            gompeiClickerDao.deleteAllUpgrades()
+            gompeiClickerDao.updatePoints(0)
+        }
+    }
+
     fun getModifiersForBoughtClickValueUpgrades() : LiveData<List<Double>> =
         gompeiClickerDao.getModifiersForBoughtClickValueUpgrades()
 
