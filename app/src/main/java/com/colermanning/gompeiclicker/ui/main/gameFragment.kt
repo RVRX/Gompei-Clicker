@@ -97,7 +97,7 @@ class gameFragment : Fragment() {
             acceleration = acceleration * 0.9f + delta
             if (acceleration > 8) {
                 Log.d(TAG, "Shake it!")
-                gompeiClick()
+               gompeiClick()
             }
         }
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}

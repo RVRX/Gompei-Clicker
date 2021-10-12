@@ -17,7 +17,7 @@ import android.view.View
 import com.colermanning.gompeiclicker.databinding.ActivityMainBinding
 import com.colermanning.gompeiclicker.ui.main.*
 import com.colermanning.gompeiclicker.ui.main.BackgroundSoundService
-
+import com.colermanning.gompeiclicker.R
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -28,9 +28,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
+import com.zeugmasolutions.localehelper.Locales
 
 
-class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsFragment.Callbacks {
+class MainActivity : LocaleAwareCompatActivity(), GameStartFragment.Callbacks, SettingsFragment.Callbacks {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -132,12 +134,15 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
 
+        val tab1name = getResources().getString(R.string.tab_text_1)
+        val tab2name = getResources().getString(R.string.tab_text_2)
+
         if (::currentLocation.isInitialized) {
             sectionsPagerAdapter.addFragment(
                 gameFragment.newInstance(
                     currentLocation.latitude.toString(),
                     currentLocation.longitude.toString()
-                ), "Game"
+                ),   tab1name.toString()
             )
         }
         else {
@@ -145,11 +150,11 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
                 gameFragment.newInstance(
                     "0",
                     "0"
-                ), "Game"
+                ), tab1name.toString()
             )
         }
 
-        sectionsPagerAdapter.addFragment(shopFragment.newInstance(), "Shop")
+        sectionsPagerAdapter.addFragment(shopFragment.newInstance(), tab2name.toString())
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
@@ -178,12 +183,15 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
 
+        val tab1name = getResources().getString(R.string.tab_text_1)
+        val tab2name = getResources().getString(R.string.tab_text_2)
+
         if (::currentLocation.isInitialized) {
             sectionsPagerAdapter.addFragment(
                 gameFragment.newInstance(
                     currentLocation.latitude.toString(),
                     currentLocation.longitude.toString()
-                ), "Game"
+                ), tab1name.toString()
             )
         }
         else {
@@ -191,11 +199,11 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
                 gameFragment.newInstance(
                     "0",
                     "0"
-                ), "Game"
+                ), tab1name.toString()
             )
         }
 
-        sectionsPagerAdapter.addFragment(shopFragment.newInstance(),"Shop")
+        sectionsPagerAdapter.addFragment(shopFragment.newInstance(),tab2name.toString())
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
@@ -213,6 +221,13 @@ class MainActivity : AppCompatActivity(), GameStartFragment.Callbacks, SettingsF
                 .add(R.id.constraintLayout, fragment)
                 .commit()
         }
+    }
+
+    override fun changeLocale(lang: String) {
+        if (lang == "es")
+            updateLocale(Locales.Spanish)
+        if (lang == "en")
+            updateLocale(Locales.English)
     }
 
     @SuppressLint("MissingPermission")
