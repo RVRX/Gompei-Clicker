@@ -114,8 +114,6 @@ class MainActivity : LocaleAwareCompatActivity(), GameStartFragment.Callbacks, S
             supportFragmentManager.findFragmentById(R.id.constraintLayout)
 
         if (currentFragment == null) {
-            //val fragment = GameListFragment.newInstance(0)
-            //val fragment = GameFragment.newInstance(UUID.fromString("7da90068-6943-4ff7-8082-2abeb9e42462"))
             val fragment = GameStartFragment.newInstance()
             supportFragmentManager
                 .beginTransaction()

@@ -54,7 +54,6 @@ class gameFragment : Fragment() {
 
     private val gameViewModel: GameViewModel by lazy {
         ViewModelProviders.of(this).get(GameViewModel::class.java)
-        //todo https://stackoverflow.com/questions/53903762/viewmodelproviders-is-deprecated-in-1-1-0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -32,8 +32,6 @@ class shopFragment : Fragment() {
         //fun onGameSelected(gameId: UUID)
     }
 
-    private var callbacks: Callbacks? = null
-
     private var pointAmount = 0;
 
     private lateinit var shopRecyclerView: RecyclerView
@@ -44,15 +42,6 @@ class shopFragment : Fragment() {
      */
     private val shopViewModel: ShopViewModel by lazy {
         ViewModelProviders.of(this).get(ShopViewModel::class.java)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        //callbacks = context as Callbacks?
     }
 
 
@@ -92,11 +81,6 @@ class shopFragment : Fragment() {
                     pointAmount = points
                 }
             })
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        //callbacks = null
     }
 
     private fun updateUI(upgrades: List<Upgrade>) {

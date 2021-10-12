@@ -41,9 +41,4 @@ interface GompeiClickerDao {
 
     @Query("SELECT * FROM upgrade_table")
     fun getUpgrades() : LiveData<List<Upgrade>>
-
-//    @Query("SELECT * FROM game_table")
-//    fun getGames(id : UUID): LiveData<List<Game>>
-
-    //todo, more DAO functions...
 }

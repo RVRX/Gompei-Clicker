@@ -91,7 +91,6 @@ class SettingsFragment : Fragment() {
         }
 
         deleteButton.setOnClickListener { view: View ->
-            /*TODO make dao function that erases all points. call erase points func and erase upgrades func. */
             shopRepository.eraseAllProgress()
         }
 
