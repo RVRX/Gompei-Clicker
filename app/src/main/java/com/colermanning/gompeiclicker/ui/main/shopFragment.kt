@@ -150,14 +150,19 @@ class shopFragment : Fragment() {
             Log.d(TAG, "Current points ${pointAmount} Cost ${upgrade.cost}")
 
             //buy upgrade
-            if (pointAmount >= upgrade.cost){
-                Toast.makeText(context, "${upgrade.id} Purchased!", Toast.LENGTH_SHORT)
-                    .show()
-                shopViewModel.buyUpgrade(upgrade)
-                costTextView.text = getString(R.string.upgrade_purchased)
-            }
-            else{
-                Toast.makeText(context, "Unable to purchase ${upgrade.id}!", Toast.LENGTH_SHORT)
+            if (!upgrade.bought) {
+                if (pointAmount >= upgrade.cost){
+                    Toast.makeText(context, "${upgrade.id} Purchased!", Toast.LENGTH_SHORT)
+                        .show()
+                    shopViewModel.buyUpgrade(upgrade)
+                    costTextView.text = getString(R.string.upgrade_purchased)
+                }
+                else{
+                    Toast.makeText(context, "Unable to purchase ${upgrade.id}!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(context, "You already own ${upgrade.id}!", Toast.LENGTH_SHORT)
                     .show()
             }
 
