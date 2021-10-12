@@ -21,5 +21,4 @@
     <string name="upgrade_description_default">defaultUpgradeDescription</string>
     <string name="upgrade_cost_default">0</string>
     <string name="upgrade_purchased">Purchased!</string>
-    <string name="grass_upgrade">Gompei eats a bit of fresh grass off of the ground. All natural! Each click now earns 1.25x the amount of innovation bucks.</string>
 </resources>
