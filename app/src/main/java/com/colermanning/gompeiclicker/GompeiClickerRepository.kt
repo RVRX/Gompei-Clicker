@@ -1,7 +1,9 @@
 package com.colermanning.gompeiclicker
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.colermanning.gompeiclicker.database.GompeiClickerDatabase

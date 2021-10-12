@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Gompei Clicker</string>
-    <string name="tab_text_1">Game</string>
-    <string name="tab_text_2">Shop</string>
-    <string name="start_game">Start Game</string>
+    <string name="tab_text_1">Spiel</string>
+    <string name="tab_text_2">Einkaufen</string>
+    <string name="start_game">Spiel Starten</string>
     <string name="game_title">Gompei Clicker</string>
-    <string name="settings">Settings</string>
-    <string name="save_settings">Back to Game</string>
-    <string name="points_name">Innovation Points</string>
-    <string name="mascot_name">Gompei The Goat</string>
+    <string name="settings">Einstellungen</string>
+    <string name="save_settings">Zurück Zum Spiel</string>
+    <string name="points_name">Innovationspunkte</string>
+    <string name="mascot_name">Gompei die Ziege</string>
     <string name="default_point_value">0</string>
     <string name="background_image">background image</string>
-    <string name="music">Music</string>
-    <string name="delete_save">Erase save data?</string>
-    <string name="language">Language</string>
+    <string name="music">Musik</string>
+    <string name="delete_save">Löschen Speichern?</string>
+    <string name="language">Sprache</string>
     <string name="english">English</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Português</string>
@@ -21,5 +21,4 @@
     <string name="upgrade_description_default">defaultUpgradeDescription</string>
     <string name="upgrade_cost_default">0</string>
     <string name="upgrade_purchased">Purchased!</string>
-    <string name="grass_upgrade">Gompei eats a bit of fresh grass off of the ground. All natural! Each click now earns 1.25x the amount of innovation bucks.</string>
 </resources>

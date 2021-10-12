@@ -31,8 +31,8 @@ class SettingsFragment : Fragment() {
     private lateinit var deleteButton: ImageButton
     private lateinit var  enButton: Button
     private lateinit var  esButton: Button
-    private lateinit var  jpButton: Button
-    private lateinit var  krButton: Button
+    private lateinit var  ptButton: Button
+    private lateinit var  deButton: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +53,8 @@ class SettingsFragment : Fragment() {
         deleteButton = view.findViewById(R.id.delete_save_button)
         enButton = view.findViewById(R.id.en)
         esButton = view.findViewById(R.id.es)
-        jpButton = view.findViewById(R.id.jp)
-        krButton = view.findViewById(R.id.kr)
+        ptButton = view.findViewById(R.id.pt)
+        deButton = view.findViewById(R.id.de)
 
         SaveSettingsButton.setOnClickListener{ view: View ->
             callbacks?.onSaveSettingsSelected()
@@ -107,13 +107,13 @@ class SettingsFragment : Fragment() {
             val manager = requireActivity().supportFragmentManager
             manager.beginTransaction().remove(this).commit()
         }
-        jpButton.setOnClickListener { view: View ->
-            //callbacks?.changeLocale("jp")
+        ptButton.setOnClickListener { view: View ->
+            callbacks?.changeLocale("pt")
             val manager = requireActivity().supportFragmentManager
             manager.beginTransaction().remove(this).commit()
         }
-        krButton.setOnClickListener { view: View ->
-            //callbacks?.changeLocale("jp")
+        deButton.setOnClickListener { view: View ->
+            callbacks?.changeLocale("de")
             val manager = requireActivity().supportFragmentManager
             manager.beginTransaction().remove(this).commit()
         }

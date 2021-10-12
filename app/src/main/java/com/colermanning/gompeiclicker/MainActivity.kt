@@ -228,6 +228,10 @@ class MainActivity : LocaleAwareCompatActivity(), GameStartFragment.Callbacks, S
             updateLocale(Locales.Spanish)
         if (lang == "en")
             updateLocale(Locales.English)
+        if (lang == "pt")
+            updateLocale(Locales.Portuguese)
+        if (lang == "de")
+            updateLocale(Locales.German)
     }
 
     @SuppressLint("MissingPermission")

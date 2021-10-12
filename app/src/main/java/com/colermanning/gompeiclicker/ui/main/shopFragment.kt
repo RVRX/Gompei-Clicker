@@ -122,7 +122,7 @@ class shopFragment : Fragment() {
         val nameTextView: TextView = itemView.findViewById(R.id.upgrade_name)
         val descTextView: TextView = itemView.findViewById(R.id.upgrade_description)
         val costTextView: TextView = itemView.findViewById(R.id.upgrade_cost)
-        //val avatarImageView: ImageView = itemView.findViewById(R.id.imageView2)
+        val avatarImageView: ImageView = itemView.findViewById(R.id.powerup_1)
 
         init {
             // init the listener
