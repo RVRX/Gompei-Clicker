@@ -133,6 +133,38 @@ class shopFragment : Fragment() {
             this.upgrade = upgrade
             nameTextView.text = this.upgrade.id
             descTextView.text = this.upgrade.description
+            when {
+                this.upgrade.id.equals("Grass") -> {
+                    avatarImageView.setImageResource(R.drawable.grass)
+                }
+                this.upgrade.id.equals("Straw") -> {
+                    avatarImageView.setImageResource(R.drawable.straw)
+                }
+                this.upgrade.id.equals("Sugar") -> {
+                    avatarImageView.setImageResource(R.drawable.sugercube)
+                }
+                this.upgrade.id.equals("Basic Education") -> {
+                    avatarImageView.setImageResource(R.drawable.basic_education)
+                }
+                this.upgrade.id.equals("Hay") -> {
+                    avatarImageView.setImageResource(R.drawable.hay)
+                }
+                this.upgrade.id.equals("Watermelon") -> {
+                    avatarImageView.setImageResource(R.drawable.watermelon)
+                }
+                this.upgrade.id.equals("Advanced Education") -> {
+                    avatarImageView.setImageResource(R.drawable.advanced_education)
+                }
+                this.upgrade.id.equals("Steak") -> {
+                    avatarImageView.setImageResource(R.drawable.steak)
+                }
+                this.upgrade.id.equals("Vegetarian Buffet!") -> {
+                    avatarImageView.setImageResource(R.drawable.vegetarian_buffet)
+                }
+                this.upgrade.id.equals("Higher Education") -> {
+                    avatarImageView.setImageResource(R.drawable.higher_education)
+                }
+            }
             if(upgrade.bought){
                 costTextView.text = getString(R.string.upgrade_purchased)
             }
