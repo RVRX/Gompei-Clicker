@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:text="@string/upgrade_name_default"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/upgrade_cost"
