@@ -34,6 +34,8 @@ class shopFragment : Fragment() {
 
     private var callbacks: Callbacks? = null
 
+    private var pointAmount = 0;
+
     private lateinit var shopRecyclerView: RecyclerView
     private var adapter: ShopAdapter? = ShopAdapter(emptyList())
 
@@ -81,6 +83,13 @@ class shopFragment : Fragment() {
                     }
                     Log.i(TAG, "Got upgrades ${upgrades.size}")
                     updateUI(upgrades)
+                }
+            })
+        shopViewModel.pointLiveData.observe(
+            viewLifecycleOwner,
+            Observer { points ->
+                points?.let {
+                    pointAmount = points
                 }
             })
     }
@@ -138,15 +147,22 @@ class shopFragment : Fragment() {
         override fun onClick(v: View?) {
             Log.d(TAG, "${upgrade.id} clicked!")
 
+            Log.d(TAG, "Current points ${pointAmount} Cost ${upgrade.cost}")
+
             //buy upgrade
-            var result = shopViewModel.buyUpgrade(upgrade)
-            costTextView.text = getString(R.string.upgrade_purchased)
-            if (result){
-                Toast.makeText(context, "${upgrade.id} Purchased!", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            else{
-                Toast.makeText(context, "${upgrade.id} has already been purchased!", Toast.LENGTH_SHORT)
+            if (!upgrade.bought) {
+                if (pointAmount >= upgrade.cost){
+                    Toast.makeText(context, "${upgrade.id} Purchased!", Toast.LENGTH_SHORT)
+                        .show()
+                    shopViewModel.buyUpgrade(upgrade)
+                    costTextView.text = getString(R.string.upgrade_purchased)
+                }
+                else{
+                    Toast.makeText(context, "Unable to purchase ${upgrade.id}!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(context, "You already own ${upgrade.id}!", Toast.LENGTH_SHORT)
                     .show()
             }
 

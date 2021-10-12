@@ -21,6 +21,9 @@ interface GompeiClickerDao {
     @Query("UPDATE game_table SET currentPoints=(:points)")
     fun updatePoints(points: Int)
 
+    @Query("UPDATE game_table SET currentPoints= CASE WHEN (:cost) <= currentPoints THEN currentPoints - (:cost) ELSE currentPoints END")
+    fun tryBuy(cost: Int)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addUpgrade(upgrade: Upgrade)
 
