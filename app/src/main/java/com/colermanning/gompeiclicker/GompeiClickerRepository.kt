@@ -60,6 +60,12 @@ class GompeiClickerRepository private constructor(context: Context) {
         }
     }
 
+    fun tryBuy(cost: Int) {
+        executor.execute {
+            gompeiClickerDao.tryBuy(cost)
+        }
+    }
+
 
     fun populateDefaults() {
         executor.execute {
