@@ -20,13 +20,109 @@
             android:textSize="50sp"
             android:text="@string/settings"/>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            app:srcCompat="@drawable/meltamogus"
-            android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:text="@string/music"/>
+
+            <ImageButton
+                android:id="@+id/previous_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_skip_previous_24" />
+
+            <ImageButton
+                android:id="@+id/pause_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_pause_24" />
+
+            <ImageButton
+                android:id="@+id/play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_play_arrow_24" />
+
+            <ImageButton
+                android:id="@+id/next_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_skip_next_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/delete_save"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/delete_save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/stat_sys_warning" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="25sp"
+                    android:text="@string/language"/>
+
+                <Button
+                    android:id="@+id/en"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/english"/>
+
+                <Button
+                    android:id="@+id/es"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/spanish"/>
+
+                <Button
+                    android:id="@+id/pt"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/portuguese"/>
+
+                <Button
+                    android:id="@+id/de"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/german"/>
+
+            </LinearLayout>
         <Button
             android:id="@+id/save_settings"
             android:layout_width="wrap_content"
